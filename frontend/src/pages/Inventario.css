@@ -1,0 +1,412 @@
+/* ==================== INVENTARIO PAGE ==================== */
+
+.inventario-page {
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(135deg, #F0F9FF 0%, #E8F4F8 100%);
+  padding: 2rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* ==================== HEADER ==================== */
+.inventario-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  animation: slideInRight 0.6s ease-out;
+}
+
+.inventario-header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #5DADE2, #A0D9B4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.inventario-header .subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+/* ==================== MENSAJES ==================== */
+.error-message {
+  background: #FEE2E2;
+  color: #991B1B;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid #FCA5A5;
+  animation: slideInRight 0.4s ease-out;
+}
+
+.success-message {
+  background: #D1FAE5;
+  color: #065F46;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid #6EE7B7;
+  animation: slideInRight 0.4s ease-out;
+}
+
+/* ==================== FORMULARIO ==================== */
+.inventario-form-card {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(93, 173, 226, 0.12);
+  border: 2px solid #F0F9FF;
+  animation: scaleIn 0.5s ease-out 0.2s backwards;
+}
+
+.inventario-form-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 2px solid #E8F4F8;
+  border-radius: 0.8rem;
+  background: white;
+  color: #2C3E50;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: #5DADE2;
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.1);
+}
+
+.btn-crear {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #5DADE2, #85C1E9);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(93, 173, 226, 0.3);
+  margin-top: 0.5rem;
+}
+
+.btn-crear:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(93, 173, 226, 0.4);
+  background: linear-gradient(135deg, #3498DB, #5DADE2);
+}
+
+/* ==================== TABLA ==================== */
+.inventario-table-card {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(93, 173, 226, 0.12);
+  border: 2px solid #F0F9FF;
+  animation: scaleIn 0.5s ease-out 0.4s backwards;
+}
+
+.inventario-table-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 0.8rem;
+}
+
+.inventario-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.inventario-table thead {
+  background: linear-gradient(135deg, #5DADE2, #85C1E9);
+}
+
+.inventario-table th {
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.inventario-table th:first-child {
+  border-top-left-radius: 0.8rem;
+}
+
+.inventario-table th:last-child {
+  border-top-right-radius: 0.8rem;
+}
+
+.inventario-table tbody tr {
+  border-bottom: 1px solid #F0F9FF;
+  transition: all 0.2s ease;
+}
+
+.inventario-table tbody tr:hover {
+  background: #F0F9FF;
+}
+
+.inventario-table tbody tr.row-warning {
+  background: #FEF3C7;
+}
+
+.inventario-table tbody tr.row-warning:hover {
+  background: #FDE68A;
+}
+
+.inventario-table td {
+  padding: 1rem;
+  text-align: center;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.producto-name {
+  font-weight: 600;
+  color: #5DADE2;
+}
+
+.stock-value {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.inline-input {
+  width: 80px;
+  padding: 0.4rem 0.6rem;
+  border: 2px solid #5DADE2;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+.inline-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.2);
+}
+
+.no-data {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* ==================== BADGES ==================== */
+.badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.badge-success {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.badge-warning {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.badge-danger {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+/* ==================== BOTONES DE ACCIÓN ==================== */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-edit,
+.btn-save,
+.btn-cancel,
+.btn-delete {
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
+  min-width: 40px;
+}
+
+.btn-edit {
+  background: #5DADE2;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #3498DB;
+  transform: scale(1.1);
+}
+
+.btn-save {
+  background: #6DD5B0;
+  color: white;
+}
+
+.btn-save:hover {
+  background: #4ABA8F;
+  transform: scale(1.1);
+}
+
+.btn-cancel {
+  background: #95A5A6;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background: #7F8C8D;
+  transform: scale(1.1);
+}
+
+.btn-delete {
+  background: #FF8B94;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #E74C3C;
+  transform: scale(1.1);
+}
+
+/* ==================== LOADING ==================== */
+.inventario-loading {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+/* ==================== ANIMACIONES ==================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .inventario-page {
+    padding: 1rem;
+  }
+
+  .inventario-header h1 {
+    font-size: 2rem;
+  }
+
+  .inventario-header .subtitle {
+    font-size: 1rem;
+  }
+
+  .inventario-form-card,
+  .inventario-table-card {
+    padding: 1.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .inventario-table {
+    font-size: 0.85rem;
+  }
+
+  .inventario-table th,
+  .inventario-table td {
+    padding: 0.7rem 0.5rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .btn-edit,
+  .btn-save,
+  .btn-cancel,
+  .btn-delete {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}

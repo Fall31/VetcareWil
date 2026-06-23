@@ -1,0 +1,122 @@
+/* Estilos adaptados al diseño global */
+.agregar-page {
+  padding: 2rem;
+}
+
+.page-header {
+  margin: 0 auto 1.2rem auto;
+  max-width: 1100px;
+  text-align: left;
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.page-header .subtitle {
+  color: var(--text-secondary, #6b7280);
+  margin: 0;
+}
+
+.agregar-card {
+  max-width: 900px;
+  margin: 1rem auto;
+  background: var(--bg-secondary, #fff);
+  color: var(--text-primary, #222);
+  border-radius: 0.8rem;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-md, 0 6px 18px rgba(20,20,40,0.08));
+}
+
+.agregar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--text-primary, #1f2937);
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--border, #e5e7eb);
+  font-size: 0.95rem;
+  background: var(--bg-input, #fff);
+  color: var(--text-primary, #111827);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary, #3b82f6);
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.06);
+}
+
+.preview {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.preview img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--primary, #3b82f6);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+.btn-submit {
+  padding: 0.7rem 1.1rem;
+  background: linear-gradient(90deg, var(--primary, #00bfa6), var(--primary-dark, #009f8a));
+  color: white;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm, 0 6px 12px rgba(16,24,40,0.08));
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 820px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    justify-content: stretch;
+  }
+
+  .btn-submit {
+    width: 100%;
+  }
+}

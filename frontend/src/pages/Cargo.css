@@ -1,0 +1,16 @@
+.cargo-page{padding:20px}
+.cargo-form-section,.cargo-list-section{background:#fff;padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:16px}
+.cargo-form{display:flex;flex-direction:column;gap:12px}
+.form-row{display:grid;grid-template-columns:1fr 220px 220px;gap:12px}
+.form-group label{display:block;font-size:13px;color:#333;margin-bottom:6px}
+.form-group input,.form-group select{width:100%;padding:8px;border:1px solid #ddd;border-radius:6px}
+.form-actions{display:flex;gap:8px}
+.form-actions button{background:#0969da;color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
+.form-actions button[type="button"]{background:#e0e0e0;color:#111}
+.cargo-table{width:100%;border-collapse:collapse}
+.cargo-table th,.cargo-table td{padding:8px;border-bottom:1px solid #eee;text-align:left}
+.cargo-table button{margin-right:8px;padding:6px 8px;border-radius:6px;border:1px solid #ccc;background:#f6f6f6;color:#111;min-width:72px;cursor:pointer}
+.cargo-table thead th{background:#fafafa}
+.cargo-table tbody tr:hover{background:#fbfbfb}
+.cargo-table button{margin-right:8px;padding:6px 8px;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer}
+@media(max-width:900px){.form-row{grid-template-columns:1fr} }

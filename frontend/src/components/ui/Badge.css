@@ -1,0 +1,132 @@
+/* 🎨 Badge & Avatar Component Styles */
+
+/* Badge */
+.badge-modern {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  transition: all var(--transition-base);
+}
+
+/* Sizes */
+.badge-sm {
+  padding: 2px 8px;
+  font-size: 0.75rem;
+}
+
+.badge-md {
+  padding: 4px 12px;
+  font-size: var(--text-sm);
+}
+
+.badge-lg {
+  padding: 6px 16px;
+  font-size: var(--text-base);
+}
+
+/* Variants */
+.badge-primary {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.badge-secondary {
+  background: var(--secondary-light);
+  color: var(--secondary-dark);
+}
+
+.badge-success {
+  background: rgba(110, 231, 183, 0.2);
+  color: var(--success-dark);
+}
+
+.badge-error {
+  background: rgba(252, 165, 165, 0.2);
+  color: var(--error-dark);
+}
+
+.badge-warning {
+  background: rgba(252, 211, 77, 0.2);
+  color: var(--warning-dark);
+}
+
+.badge-info {
+  background: rgba(147, 197, 253, 0.2);
+  color: var(--info-dark);
+}
+
+/* Dot badge */
+.badge-dot-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Avatar */
+.avatar-modern {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* Avatar sizes */
+.avatar-sm {
+  width: 32px;
+  height: 32px;
+  font-size: var(--text-sm);
+}
+
+.avatar-md {
+  width: 48px;
+  height: 48px;
+  font-size: var(--text-base);
+}
+
+.avatar-lg {
+  width: 64px;
+  height: 64px;
+  font-size: var(--text-xl);
+}
+
+.avatar-xl {
+  width: 96px;
+  height: 96px;
+  font-size: var(--text-2xl);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Online status */
+.avatar-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+  background: var(--success);
+  border: 2px solid var(--bg-secondary);
+}

@@ -1,0 +1,213 @@
+/* ==================== PROVEEDORES PAGE ==================== */
+
+.proveedores-page {
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(135deg, #F0F9FF 0%, #E8F4F8 100%);
+  padding: 2rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* ==================== HEADER ==================== */
+.proveedores-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  animation: slideInRight 0.6s ease-out;
+}
+
+.proveedores-header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #5DADE2, #A0D9B4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.proveedores-header .subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+/* ==================== FORMULARIO ==================== */
+.proveedores-form-card {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(93, 173, 226, 0.12);
+  border: 2px solid #F0F9FF;
+  animation: scaleIn 0.5s ease-out 0.2s backwards;
+}
+
+.proveedores-form-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ==================== TABLA ==================== */
+.proveedores-table-card {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(93, 173, 226, 0.12);
+  border: 2px solid #F0F9FF;
+  animation: scaleIn 0.5s ease-out 0.4s backwards;
+}
+
+.proveedores-table-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.proveedores-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.proveedores-table thead {
+  background: linear-gradient(135deg, #5DADE2, #85C1E9);
+}
+
+.proveedores-table th {
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.proveedores-table th:first-child {
+  border-top-left-radius: 0.8rem;
+}
+
+.proveedores-table th:last-child {
+  border-top-right-radius: 0.8rem;
+}
+
+.proveedores-table tbody tr {
+  border-bottom: 1px solid #F0F9FF;
+  transition: all 0.2s ease;
+}
+
+.proveedores-table tbody tr:hover {
+  background: #F0F9FF;
+}
+
+.proveedores-table td {
+  padding: 1rem;
+  text-align: center;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.proveedor-name {
+  font-weight: 600;
+  color: #5DADE2;
+}
+
+.inline-input {
+  width: 120px;
+  padding: 0.4rem 0.6rem;
+  border: 2px solid #5DADE2;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  color: #2C3E50;
+}
+
+.inline-input.full-width {
+  width: 100%;
+  min-width: 150px;
+}
+
+.inline-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.2);
+}
+
+/* ==================== LOADING ==================== */
+.proveedores-loading {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+/* ==================== ANIMACIONES ==================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .proveedores-page {
+    padding: 1rem;
+  }
+
+  .proveedores-header h1 {
+    font-size: 2rem;
+  }
+
+  .proveedores-header .subtitle {
+    font-size: 1rem;
+  }
+
+  .proveedores-form-card,
+  .proveedores-table-card {
+    padding: 1.5rem;
+  }
+
+  .proveedores-table {
+    font-size: 0.85rem;
+  }
+
+  .proveedores-table th,
+  .proveedores-table td {
+    padding: 0.7rem 0.5rem;
+  }
+
+  .inline-input {
+    width: 100%;
+  }
+}

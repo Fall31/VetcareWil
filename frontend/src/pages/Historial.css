@@ -1,0 +1,9 @@
+:root{--bg:#f8fafb;--card:#fff;--accent:#fff1d6;--muted:#6b7280}
+.historial-page{padding:20px;background:var(--bg)}
+.history-list{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.history-card{display:flex;justify-content:space-between;padding:12px;border-radius:10px;background:linear-gradient(90deg,var(--card),var(--accent));box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+.pet-name{font-weight:700}
+.history-date{color:var(--muted)}
+.history-note{max-width:60%}
+
+@media(min-width:800px){.history-list{flex-direction:row;flex-wrap:wrap}.history-card{width:calc(50% - 10px)}}

@@ -1,0 +1,24 @@
+.asignar-container { padding: 22px; max-width:1100px; margin:0 auto }
+.asignar-container h1 { margin-bottom:14px }
+.asignar-form { background:#fff;padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);margin-bottom:20px }
+.form-grid{display:grid !important;grid-template-columns:repeat(2, 1fr) !important;gap:18px;max-width:100%}
+.form-grid > div{display:flex;flex-direction:column;gap:10px;width:100%}
+.form-grid label{font-size:13px;color:#333;margin-bottom:4px}
+/* Only input fields: gray background and black text */
+.form-grid input[type="text"], .form-grid input[type="email"], .form-grid input[type="password"], .form-grid input[type="date"], .form-grid select, .form-grid textarea{padding:10px;border:1px solid #bfbfbf;border-radius:8px;background:#c0c0c0 !important;color:#000 !important}
+.form-grid textarea{min-height:100px;resize:vertical}
+.form-actions{display:flex;justify-content:flex-end;padding-top:14px}
+.form-actions button{background:#0969da;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer}
+.form-actions button[disabled]{opacity:0.6;cursor:default}
+.personal-list{list-style:none;padding:0;margin-top:12px}
+.personal-item{display:flex;align-items:center;padding:12px;border-radius:10px;border:1px solid #e0e0e0;margin-bottom:12px;background:#f7f7f7}
+.personal-item img{width:64px;height:64px;object-fit:cover;border-radius:8px;margin-right:14px}
+.personal-item strong{margin-right:8px}
+
+@media (max-width:768px){
+  .form-grid{grid-template-columns:1fr}
+  .form-actions{justify-content:stretch}
+}
+
+.asignar-form input[type="file"]{padding:10px;border:1px solid #bfbfbf;border-radius:8px;background:#c0c0c0 !important;color:#000 !important}
+.asignar-form img{border:1px solid #e6e6e6}

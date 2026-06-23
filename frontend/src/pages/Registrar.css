@@ -1,0 +1,24 @@
+/* Reutiliza los estilos de IniciarSesion.css */
+@import './IniciarSesion.css';
+
+/* Banner de éxito adicional */
+.success-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--success);
+  color: var(--text-white);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+  animation: slideIn 0.3s ease;
+}
+
+.success-banner span {
+  font-size: var(--text-xl);
+}
+
+.success-banner p {
+  margin: 0;
+  font-weight: 500;
+}

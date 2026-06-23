@@ -1,0 +1,766 @@
+﻿/* ==================== HISTORIAL MEDICO PERSONAL ==================== */
+
+.historial-medico-personal {
+  padding: 2rem;
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(135deg, #F0F9FF 0%, #E8F4F8 100%);
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* ==================== HEADER ==================== */
+.historial-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.historial-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin: 0 0 0.5rem;
+}
+
+.historial-header .subtitle {
+  font-size: 1.2rem;
+  color: #7F8C8D;
+  margin: 0;
+}
+
+/* ==================== CONTAINER PRINCIPAL ==================== */
+.historial-container {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ==================== PANEL DE MASCOTAS (IZQUIERDO) ==================== */
+.panel-mascotas {
+  background: white;
+  border-radius: 1.5rem;
+  border: 2px solid #F0F9FF;
+  box-shadow: 0 4px 20px rgba(93, 173, 226, 0.12);
+  height: calc(100vh - 220px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 1.5rem;
+  border-bottom: 2px solid #F0F9FF;
+  background: linear-gradient(135deg, #F0F9FF, #E8F4F8);
+}
+
+.panel-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin: 0 0 1rem;
+}
+
+.busqueda-mascotas {
+  margin-top: 1rem;
+}
+
+.lista-mascotas {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.mascota-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px solid #F0F9FF;
+  margin-bottom: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.mascota-item:hover {
+  border-color: #5DADE2;
+  background: #F0F9FF;
+  transform: translateX(5px);
+}
+
+.mascota-item.activa {
+  background: linear-gradient(135deg, #5DADE2, #85C1E9);
+  border-color: #5DADE2;
+  color: white;
+}
+
+.mascota-item.activa .mascota-especie,
+.mascota-item.activa .mascota-dueno {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mascota-avatar {
+  font-size: 2.5rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #F0F9FF, #E8F4F8);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mascota-item.activa .mascota-avatar {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mascota-info-item {
+  flex: 1;
+  overflow: hidden;
+}
+
+.mascota-info-item h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.3rem;
+  color: #2C3E50;
+}
+
+.mascota-item.activa .mascota-info-item h3 {
+  color: white;
+}
+
+.mascota-especie {
+  font-size: 0.9rem;
+  color: #7F8C8D;
+  margin: 0.2rem 0;
+}
+
+.mascota-dueno {
+  font-size: 0.85rem;
+  color: #5DADE2;
+  margin: 0.3rem 0 0;
+  font-weight: 600;
+}
+
+.empty-mascotas {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #7F8C8D;
+}
+
+/* ==================== PANEL DE HISTORIAL (DERECHO) ==================== */
+.panel-historial {
+  background: white;
+  border-radius: 1.5rem;
+  border: 2px solid #F0F9FF;
+  box-shadow: 0 4px 20px rgba(93, 173, 226, 0.12);
+  padding: 2rem;
+  height: calc(100vh - 220px);
+  overflow-y: auto;
+}
+
+/* ==================== DETALLE DE MASCOTA SELECCIONADA ==================== */
+.mascota-detalle-header {
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #F0F9FF;
+  margin-bottom: 2rem;
+}
+
+.mascota-titulo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mascota-titulo h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin: 0;
+}
+
+.mascota-chip {
+  background: linear-gradient(135deg, #A0D9B4, #7DD4C0);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.mascota-datos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.dato-item {
+  background: linear-gradient(135deg, #F0F9FF, #E8F4F8);
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.8rem;
+  font-size: 0.95rem;
+  color: #2C3E50;
+}
+
+.dato-item strong {
+  color: #5DADE2;
+  font-weight: 600;
+}
+
+.btn-nuevo-registro {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #5DADE2, #85C1E9);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(93, 173, 226, 0.25);
+  margin-top: 1rem;
+}
+
+.btn-nuevo-registro:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(93, 173, 226, 0.35);
+}
+
+/* ==================== TIMELINE DE HISTORIAL ==================== */
+.timeline-historial {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.historial-grupo {
+  margin-bottom: 2rem;
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid #5DADE2;
+}
+
+.historial-fecha-principal {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5DADE2;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background: #F0F9FF;
+  border-radius: 0.8rem;
+  display: inline-block;
+  position: relative;
+  left: -1.5rem;
+}
+
+.registro-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, #F0F9FF, #E8F4F8);
+  border-radius: 1rem;
+  border: 2px solid #E8F4F8;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  left: -1.5rem;
+  width: calc(100% + 1.5rem);
+}
+
+.registro-card:hover {
+  border-color: #5DADE2;
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(93, 173, 226, 0.2);
+}
+
+.registro-icono {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.registro-contenido {
+  flex: 1;
+}
+
+.registro-contenido h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin: 0 0 0.5rem;
+}
+
+.registro-servicio,
+.registro-tratamiento,
+.registro-observaciones {
+  font-size: 0.9rem;
+  color: #7F8C8D;
+  margin: 0.3rem 0;
+}
+
+.registro-servicio {
+  color: #5DADE2;
+  font-weight: 600;
+}
+
+.registro-tratamiento {
+  color: #A0D9B4;
+  font-weight: 600;
+}
+
+.registro-flecha {
+  font-size: 2rem;
+  color: #5DADE2;
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.registro-card:hover .registro-flecha {
+  opacity: 1;
+  transform: translateX(5px);
+}
+
+.empty-historial {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.empty-historial p {
+  font-size: 1.2rem;
+  color: #7F8C8D;
+  margin-bottom: 1.5rem;
+}
+
+.btn-crear-primero {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #A0D9B4, #7DD4C0);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(125, 212, 192, 0.25);
+}
+
+.btn-crear-primero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(125, 212, 192, 0.35);
+}
+
+/* ==================== ESTADO VACIO ==================== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 3rem;
+}
+
+.empty-icon {
+  font-size: 6rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.empty-state h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin: 0 0 0.5rem;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  color: #7F8C8D;
+  margin: 0;
+}
+
+/* ==================== MODALES ==================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 1.5rem;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.3s ease-out;
+}
+
+.modal-grande {
+  max-width: 800px;
+}
+
+.modal-pequeno {
+  max-width: 500px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid #F0F9FF;
+  background: linear-gradient(135deg, #F0F9FF, #E8F4F8);
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin: 0;
+}
+
+.btn-cerrar {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #7F8C8D;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.btn-cerrar:hover {
+  background: #FF8B94;
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-footer {
+  padding: 1.5rem 2rem;
+  border-top: 2px solid #F0F9FF;
+  background: linear-gradient(135deg, #F0F9FF, #E8F4F8);
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+/* ==================== FORMULARIOS ==================== */
+.form-grupo {
+  margin-bottom: 1.5rem;
+}
+
+.form-grupo label {
+  display: block;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.input-busqueda,
+.select-filtro {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border: 2px solid #E8F4F8;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  color: #2C3E50;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.input-busqueda:focus,
+.select-filtro:focus {
+  outline: none;
+  border-color: #5DADE2;
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.1);
+}
+
+.textarea-comentario {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #E8F4F8;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #2C3E50;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.textarea-comentario:focus {
+  outline: none;
+  border-color: #5DADE2;
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.1);
+}
+
+.input-con-boton {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-con-boton .select-filtro {
+  flex: 1;
+}
+
+.btn-agregar-rapido {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #A0D9B4, #7DD4C0);
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.btn-agregar-rapido:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(125, 212, 192, 0.3);
+}
+
+/* ==================== BOTONES ==================== */
+.btn-cancelar {
+  padding: 0.8rem 1.5rem;
+  background: #E8F4F8;
+  color: #2C3E50;
+  border: none;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar:hover {
+  background: #D0E8F0;
+}
+
+.btn-guardar {
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, #5DADE2, #85C1E9);
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(93, 173, 226, 0.25);
+}
+
+.btn-guardar:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(93, 173, 226, 0.35);
+}
+
+.btn-guardar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-volver {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #5DADE2, #85C1E9);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(93, 173, 226, 0.3);
+}
+
+.btn-volver:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(93, 173, 226, 0.4);
+}
+
+/* ==================== SECCIONES DE DETALLE ==================== */
+.detalle-section {
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, #F0F9FF, #E8F4F8);
+  border-radius: 1rem;
+  border: 2px solid #E8F4F8;
+}
+
+.detalle-section h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(93, 173, 226, 0.2);
+}
+
+.detalle-section p {
+  margin: 0.5rem 0;
+  color: #2C3E50;
+  font-size: 0.95rem;
+}
+
+.detalle-section strong {
+  color: #5DADE2;
+  font-weight: 600;
+}
+
+/* ==================== ALERTAS ==================== */
+.alert {
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  animation: slideInDown 0.3s ease-out;
+}
+
+.alert-success {
+  background: #E8F8F5;
+  color: #006644;
+  border: 2px solid #6DD5B0;
+}
+
+/* ==================== LOADING & ERROR ==================== */
+.historial-loading,
+.historial-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 70px);
+  text-align: center;
+  padding: 2rem;
+}
+
+.historial-loading p,
+.historial-error p {
+  font-size: 1.3rem;
+  color: #7F8C8D;
+  margin-top: 1rem;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #F0F9FF;
+  border-top: 6px solid #5DADE2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ==================== ANIMACIONES ==================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1200px) {
+  .historial-container {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-mascotas {
+    height: auto;
+    max-height: 400px;
+  }
+
+  .panel-historial {
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .historial-medico-personal {
+    padding: 1rem;
+  }
+
+  .historial-header h1 {
+    font-size: 2rem;
+  }
+
+  .mascota-datos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 1rem;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+  }
+
+  .btn-cancelar,
+  .btn-guardar {
+    width: 100%;
+  }
+}

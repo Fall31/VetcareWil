@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Conexión Supabase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #4CAF50;
+            background: #f9f9f9;
+        }
+        .error { border-left-color: #f44336; background: #ffebee; }
+        .success { border-left-color: #4CAF50; background: #e8f5e9; }
+        .loading { border-left-color: #2196F3; background: #e3f2fd; }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover { background: #45a049; }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔍 Test de Conexión Supabase</h1>
+        
+        <div id="config-test" class="test-section loading">
+            <h3>1. Verificando configuración...</h3>
+            <div id="config-result">Esperando...</div>
+        </div>
+
+        <div id="connection-test" class="test-section loading">
+            <h3>2. Probando conexión a Supabase...</h3>
+            <div id="connection-result">Esperando...</div>
+        </div>
+
+        <div id="tables-test" class="test-section loading">
+            <h3>3. Verificando tablas...</h3>
+            <div id="tables-result">Esperando...</div>
+        </div>
+
+        <div id="data-test" class="test-section loading">
+            <h3>4. Obteniendo datos de prueba...</h3>
+            <div id="data-result">Esperando...</div>
+        </div>
+
+        <button onclick="runTests()">🔄 Ejecutar Tests Nuevamente</button>
+    </div>
+
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+
+        const SUPABASE_URL = 'https://nyjuzzbqbmjfeeqypqkn.supabase.co'
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im55anV6emJxYm1qZmVlcXlwcWtuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0MDE3OTAsImV4cCI6MjA3NTk3Nzc5MH0.b3K5IW5TgUwGnzpOf6BNGB1nAbu-3n7t_bzK67GdWpg'
+
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+        async function test1_Config() {
+            const configDiv = document.getElementById('config-test')
+            const resultDiv = document.getElementById('config-result')
+            
+            try {
+                configDiv.className = 'test-section loading'
+                resultDiv.innerHTML = 'Verificando...'
+                
+                const config = {
+                    url: SUPABASE_URL,
+                    keyLength: SUPABASE_ANON_KEY.length,
+                    keyStart: SUPABASE_ANON_KEY.substring(0, 30) + '...',
+                }
+                
+                resultDiv.innerHTML = `
+                    <strong>✅ Configuración detectada:</strong><br>
+                    URL: ${config.url}<br>
+                    Key: ${config.keyStart} (${config.keyLength} caracteres)
+                `
+                configDiv.className = 'test-section success'
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Error:</strong> ${error.message}`
+                configDiv.className = 'test-section error'
+            }
+        }
+
+        async function test2_Connection() {
+            const connDiv = document.getElementById('connection-test')
+            const resultDiv = document.getElementById('connection-result')
+            
+            try {
+                connDiv.className = 'test-section loading'
+                resultDiv.innerHTML = 'Conectando...'
+                
+                // Test simple de conexión
+                const { data, error } = await supabase.from('mascota').select('count', { count: 'exact', head: true })
+                
+                if (error) throw error
+                
+                resultDiv.innerHTML = `<strong>✅ Conexión exitosa!</strong><br>Supabase respondió correctamente.`
+                connDiv.className = 'test-section success'
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Error de conexión:</strong><pre>${error.message}\n${error.hint || ''}</pre>`
+                connDiv.className = 'test-section error'
+            }
+        }
+
+        async function test3_Tables() {
+            const tablesDiv = document.getElementById('tables-test')
+            const resultDiv = document.getElementById('tables-result')
+            
+            try {
+                tablesDiv.className = 'test-section loading'
+                resultDiv.innerHTML = 'Verificando tablas...'
+                
+                const tables = [
+                    'mascota', 'cliente', 'producto', 'servicio', 
+                    'reserva', 'articulosblog', 'personal', 'habitacion',
+                    'vacunacatalog', 'chatbot_sesion'
+                ]
+                
+                const results = []
+                
+                for (const table of tables) {
+                    const { count, error } = await supabase
+                        .from(table)
+                        .select('*', { count: 'exact', head: true })
+                    
+                    if (error) {
+                        results.push(`❌ ${table}: ${error.message}`)
+                    } else {
+                        results.push(`✅ ${table}: ${count} registros`)
+                    }
+                }
+                
+                resultDiv.innerHTML = `<strong>Resultados:</strong><br>${results.join('<br>')}`
+                tablesDiv.className = 'test-section success'
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Error:</strong><pre>${error.message}</pre>`
+                tablesDiv.className = 'test-section error'
+            }
+        }
+
+        async function test4_Data() {
+            const dataDiv = document.getElementById('data-test')
+            const resultDiv = document.getElementById('data-result')
+            
+            try {
+                dataDiv.className = 'test-section loading'
+                resultDiv.innerHTML = 'Obteniendo datos...'
+                
+                // Test 1: Artículos
+                const { data: articulos, error: artError } = await supabase
+                    .from('articulosblog')
+                    .select('*')
+                    .limit(3)
+                
+                if (artError) throw artError
+                
+                // Test 2: Mascotas
+                const { data: mascotas, error: mascError } = await supabase
+                    .from('mascota')
+                    .select('*')
+                    .limit(3)
+                
+                if (mascError) throw mascError
+                
+                // Test 3: Productos
+                const { data: productos, error: prodError } = await supabase
+                    .from('producto')
+                    .select('*')
+                    .limit(3)
+                
+                if (prodError) throw prodError
+                
+                resultDiv.innerHTML = `
+                    <strong>✅ Datos obtenidos exitosamente:</strong><br><br>
+                    <strong>Artículos (${articulos.length}):</strong><br>
+                    ${articulos.map(a => `- ${a.titulo}`).join('<br>')}<br><br>
+                    <strong>Mascotas (${mascotas.length}):</strong><br>
+                    ${mascotas.map(m => `- ${m.nombre_mascota} (${m.especie})`).join('<br>')}<br><br>
+                    <strong>Productos (${productos.length}):</strong><br>
+                    ${productos.map(p => `- ${p.nombre_producto}`).join('<br>')}
+                `
+                dataDiv.className = 'test-section success'
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Error obteniendo datos:</strong><pre>${JSON.stringify(error, null, 2)}</pre>`
+                dataDiv.className = 'test-section error'
+            }
+        }
+
+        async function runTests() {
+            await test1_Config()
+            await test2_Connection()
+            await test3_Tables()
+            await test4_Data()
+        }
+
+        // Ejecutar automáticamente al cargar
+        window.runTests = runTests
+        runTests()
+    </script>
+</body>
+</html>
