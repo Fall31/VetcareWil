@@ -21,8 +21,18 @@ async function agregarProducto({ ci_cliente, id_producto, cantidad }) {
   return { data: detalle, error: null }
 }
 
+async function vaciarCarritoActivo(ci_cliente) {
+  const carrito = mockCarritos.find(c => c.ci_cliente === ci_cliente && c.estado === 'activo')
+  if (!carrito) return { data: null, error: null }
+
+  mockDetalles = mockDetalles.filter(d => d.id_carrito !== carrito.id_carrito)
+  mockCarritos = mockCarritos.filter(c => c.id_carrito !== carrito.id_carrito)
+  return { data: null, error: null }
+}
+
 module.exports = {
   getCarritoActivo,
   agregarProducto,
+  vaciarCarritoActivo,
   __reset: () => { mockCarritos = []; mockDetalles = []; idCarrito = 1; idDetalle = 1 }
 }

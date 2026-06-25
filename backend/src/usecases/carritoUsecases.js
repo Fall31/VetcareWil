@@ -16,7 +16,16 @@ function makeAgregarAlCarrito({ carritoRepository }) {
   }
 }
 
+function makeVaciarCarrito({ carritoRepository }) {
+  return async function vaciarCarrito({ ci_cliente }) {
+    const { data, error } = await carritoRepository.vaciarCarritoActivo(ci_cliente)
+    if (error) return { success: false, error }
+    return { success: true, data }
+  }
+}
+
 module.exports = {
   makeGetCarritoActivo,
   makeAgregarAlCarrito,
+  makeVaciarCarrito,
 }

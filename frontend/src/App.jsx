@@ -258,6 +258,7 @@ function AppContent({ user, userRole }) {
             <Route path="/gestion-blog" element={<GestionBlog />} />
             <Route path="/chat-personal" element={<ChatPersonal />} />
             <Route path="/mis-horarios" element={<MisHorarios />} />
+            <Route path="*" element={<Navigate to="/iniciar-sesion" replace />} />
           </Routes>
           </div>
         </main>

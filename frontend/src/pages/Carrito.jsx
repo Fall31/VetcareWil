@@ -1,30 +1,65 @@
 import React, { useEffect, useState } from 'react'
 import { useCarrito } from '@/hooks'
-import { Producto } from '@/domain'
 import './Carrito.css'
 
 const Carrito = () => {
-  const { obtenerCarritoLocal, limpiarCarrito } = useCarrito()
+  const { obtenerCarritoLocal, obtenerCarritoBackend, limpiarCarrito } = useCarrito()
   const [items, setItems] = useState([])
+  const [total, setTotal] = useState(0)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const loadItems = () => {
-      const carritoItems = obtenerCarritoLocal()
-      setItems(carritoItems)
+    const loadItems = async () => {
+      setLoading(true)
+      try {
+        const carrito = await obtenerCarritoBackend()
+        if (carrito && carrito.detalle_carrito) {
+          const mappedItems = carrito.detalle_carrito.map((detail) => {
+            const precio = detail.precio_unitario ?? detail.producto?.precio ?? 0
+            return {
+              id: detail.id_detalle_carrito,
+              nombre: detail.producto?.nombre_producto || detail.nombre || 'Producto',
+              precio,
+              cantidad: detail.cantidad,
+              subtotal: precio * detail.cantidad
+            }
+          })
+
+          setItems(mappedItems)
+          setTotal(carrito.total ?? mappedItems.reduce((sum, item) => sum + item.subtotal, 0))
+          setLoading(false)
+          return
+        }
+      } catch (err) {
+        console.warn('No se pudo cargar carrito desde backend, usando localStorage:', err)
+      }
+
+      const carritoLocal = obtenerCarritoLocal()
+      setItems(carritoLocal)
+      setTotal(carritoLocal.reduce((sum, item) => sum + item.precio * item.cantidad, 0))
+      setLoading(false)
     }
+
     loadItems()
-  }, [obtenerCarritoLocal])
+  }, [obtenerCarritoBackend, obtenerCarritoLocal])
 
-  const total = items.reduce((s, it) => s + (it.precio * it.cantidad), 0)
-
-  const handleVaciar = () => {
-    limpiarCarrito()
+  const handleVaciar = async () => {
+    await limpiarCarrito()
     setItems([])
+    setTotal(0)
   }
 
   const handlePagar = () => {
-    // TODO: Implementar proceso de pago
     alert(`Total a pagar: $${total.toFixed(2)}`)
+  }
+
+  if (loading) {
+    return (
+      <div className="carrito-page">
+        <h1>Carrito</h1>
+        <p>Cargando carrito...</p>
+      </div>
+    )
   }
 
   return (
@@ -34,14 +69,32 @@ const Carrito = () => {
         <p>Tu carrito está vacío.</p>
       ) : (
         <div className="carrito-list">
-          {items.map((it, idx) => (
-            <div key={idx} className="carrito-item">
-              <div>{it.nombre}</div>
-              <div>{it.cantidad} x ${it.precio.toFixed(2)}</div>
-              <div className="subtotal">${(it.cantidad * it.precio).toFixed(2)}</div>
-            </div>
-          ))}
-          <div className="carrito-total">Total: ${total.toFixed(2)}</div>
+          <table className="carrito-table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio unitario</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((it) => (
+                <tr key={it.id}>
+                  <td>{it.nombre}</td>
+                  <td>{it.cantidad}</td>
+                  <td>${it.precio.toFixed(2)}</td>
+                  <td>${it.subtotal.toFixed(2)}</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colSpan="3" className="total-label">Total</td>
+                <td className="total-value">${total.toFixed(2)}</td>
+              </tr>
+            </tfoot>
+          </table>
           <div className="carrito-actions">
             <button className="btn-primary" onClick={handlePagar}>Pagar</button>
             <button className="btn-muted" onClick={handleVaciar}>Vaciar</button>

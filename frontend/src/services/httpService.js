@@ -3,7 +3,7 @@
  * Maneja configuración común, headers, errores, etc.
  */
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3001/api'
 
 class HttpService {
   constructor(baseURL = API_BASE) {

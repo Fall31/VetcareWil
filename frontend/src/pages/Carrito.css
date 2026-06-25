@@ -1,7 +1,12 @@
 .carrito-page{padding:8px}
-.carrito-list{display:flex;flex-direction:column;gap:8px}
-.carrito-item{display:flex;justify-content:space-between;padding:8px;background:var(--soft-white);border-radius:8px}
-.carrito-total{font-weight:700;margin-top:8px}
+.carrito-list{display:flex;flex-direction:column;gap:16px}
+.carrito-table{width:100%;border-collapse:collapse;background:var(--soft-white);border-radius:12px;overflow:hidden}
+.carrito-table th,.carrito-table td{padding:12px 10px;border-bottom:1px solid rgba(0,0,0,.08);text-align:left}
+.carrito-table thead{background:rgba(0,0,0,.05)}
+.carrito-table tbody tr:hover{background:rgba(0,0,0,.03)}
+.carrito-table tfoot td{font-weight:700;border-top:2px solid rgba(0,0,0,.12)}
+.total-label{text-align:right}
+.total-value{text-align:right}
 .carrito-actions{display:flex;gap:8px;margin-top:8px}
 .btn-muted{background:#f0f0f5;border:none;padding:8px 12px;border-radius:8px}
 .btn-primary{background:var(--mid-blue);border:none;padding:8px 12px;border-radius:8px;color:white}

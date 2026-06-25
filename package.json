@@ -1,6 +1,8 @@
 {
   "scripts": {
     "dev": "concurrently \"pnpm run dev --prefix frontend\" \"node backend/server.js\"",
+    "build:frontend": "npm install --prefix frontend && npm run build --prefix frontend",
+    "vercel-build": "npm install --prefix frontend && npm run build --prefix frontend",
     "test:backend": "cd backend && pnpm run test:all",
     "test": "pnpm run test:backend"
   },

@@ -152,6 +152,7 @@ app.post('/api/servicios', servicioController.createServicio)
 const carritoController = require('./src/controllers/carritoController')
 app.get('/api/carrito/:ci_cliente', carritoController.getCarrito)
 app.post('/api/carrito/agregar', carritoController.agregarProducto)
+app.delete('/api/carrito/:ci_cliente', carritoController.vaciarCarrito)
 
 // --- Endpoints para DOCTORES (Personal) ---
 app.get('/api/doctores', async (req, res) => {

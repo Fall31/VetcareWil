@@ -6,7 +6,7 @@
 
 import { productosService, serviciosService, carritoService, mascotasService, reservasService, clientesService } from '../services'
 
-const API_BASE = 'http://localhost:5000/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3001/api'
 
 // Utilidad para hacer fetch con manejo de errores (legacy - usar httpService en nuevos componentes)
 const apiCall = async (endpoint, options = {}) => {

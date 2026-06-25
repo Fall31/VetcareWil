@@ -1,8 +1,9 @@
 const container = require('../../container')
-const { makeGetCarritoActivo, makeAgregarAlCarrito } = require('../../usecases/carritoUsecases')
+const { makeGetCarritoActivo, makeAgregarAlCarrito, makeVaciarCarrito } = require('../../usecases/carritoUsecases')
 
 const getCarritoUsecase = makeGetCarritoActivo({ carritoRepository: container.carritoRepository })
 const agregarUsecase = makeAgregarAlCarrito({ carritoRepository: container.carritoRepository })
+const vaciarUsecase = makeVaciarCarrito({ carritoRepository: container.carritoRepository })
 
 async function getCarrito(req, res) {
   try {
@@ -28,7 +29,20 @@ async function agregarProducto(req, res) {
   }
 }
 
+async function vaciarCarrito(req, res) {
+  try {
+    const { ci_cliente } = req.params
+    const result = await vaciarUsecase({ ci_cliente })
+    if (!result.success) return res.status(400).json({ error: result.error })
+    res.json({ success: true })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Error vaciando el carrito' })
+  }
+}
+
 module.exports = {
   getCarrito,
   agregarProducto,
+  vaciarCarrito,
 }

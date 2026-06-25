@@ -12,4 +12,8 @@ export const carritoService = {
   async agregarProducto(ci_cliente, id_producto, cantidad) {
     return await httpService.post('/carrito/agregar', { ci_cliente, id_producto, cantidad })
   },
+
+  async vaciarCarrito(ci_cliente) {
+    return await httpService.delete(`/carrito/${ci_cliente}`)
+  },
 }
