@@ -159,7 +159,6 @@ function AppContent({ user, userRole }) {
     { to: '/catalogo-productos', label: 'Tienda' },
     { to: '/catalogo-vacunas', label: 'Vacunas' },
     { to: '/doctores', label: 'Doctores' },
-    { to: '/proveedores', label: 'Proveedores' },
     { to: '/articulos-blog', label: 'Blog' },
   ];
   const personalNavItems = [

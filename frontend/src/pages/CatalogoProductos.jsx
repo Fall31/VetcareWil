@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { useCarrito } from '@/hooks'
 import supabaseServices from '../services/supabase'
+import { useCarrito } from '../hooks/useCarrito'
 import './CatalogoProductos.css'
 
 const CatalogoProductos = () => {
@@ -93,11 +93,8 @@ const CatalogoProductos = () => {
 
   const handleAgregarAlCarrito = async (producto) => {
     try {
-      const result = await agregarProducto(producto, 1)
-      if (!result.success) {
-        throw new Error(result.error || 'Error al agregar al carrito')
-      }
-
+      await agregarProducto(producto, 1)
+      
       // Mostrar feedback visual
       setFeedbackBtn(producto.id_producto)
       setTimeout(() => setFeedbackBtn(null), 1500)
@@ -131,9 +128,6 @@ const CatalogoProductos = () => {
         <div className="results-count">
           {productosFiltrados.length} producto{productosFiltrados.length !== 1 ? 's' : ''} encontrado{productosFiltrados.length !== 1 ? 's' : ''}
         </div>
-        <Link to="/carrito" className="btn-carrito-header">
-          🛒 Ver Carrito
-        </Link>
       </div>
 
       {/* Barra de Filtros y Búsqueda */}
@@ -201,6 +195,10 @@ const CatalogoProductos = () => {
             </button>
           </div>
         </div>
+
+        <Link to="/carrito" className="btn-carrito-link">
+          Ver carrito 🛒
+        </Link>
       </div>
 
       {/* Grid de Productos */}
