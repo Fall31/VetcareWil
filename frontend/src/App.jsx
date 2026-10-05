@@ -199,7 +199,7 @@ function AppContent({ user, userRole }) {
   return (
     <div className="app-container">
       <nav className="sidebar">
-        <h2>🐾 VetCare</h2>
+        <h2>🐾 VetCareWil</h2>
 
         {!isAuthPage && (
           <ul>
